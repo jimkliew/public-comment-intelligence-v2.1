@@ -1,0 +1,39 @@
+# Web framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+python-multipart>=0.0.18
+
+# Neo4j
+neo4j>=5.27.0
+
+# AI/ML
+anthropic>=0.42.0
+sentence-transformers>=3.3.0
+faiss-cpu>=1.9.0
+bertopic>=0.16.0
+umap-learn>=0.5.7
+hdbscan>=0.8.40
+scikit-learn>=1.6.0
+
+# Data processing
+numpy>=2.0.0
+pandas>=2.2.0
+scipy>=1.14.0
+
+# Utilities
+python-dotenv>=1.0.0
+httpx>=0.28.0
+pydantic>=2.10.0
+pydantic-settings>=2.7.0
+tqdm>=4.67.0
+networkx>=3.4.0
+
+# OpenAI
+openai>=1.50.0
+
+# Attachment extraction
+pdfplumber>=0.11.0
+python-docx>=1.1.0
+
+# Export
+jinja2>=3.1.0

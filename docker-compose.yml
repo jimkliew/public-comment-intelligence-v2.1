@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    ports:
+      - "7474:7474"   # Browser
+      - "7687:7687"   # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/docketiq2024
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_server_memory_heap_max__size: 1G
+    volumes:
+      - public-comment-intelligence-v20_neo4j_data:/data
+      - neo4j_logs:/logs
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "docketiq2024", "RETURN 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      NEO4J_URI: bolt://neo4j:7687
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - backend_cache:/root/.cache
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+
+volumes:
+  public-comment-intelligence-v20_neo4j_data:
+    external: true
+  neo4j_logs:
+  backend_cache:
