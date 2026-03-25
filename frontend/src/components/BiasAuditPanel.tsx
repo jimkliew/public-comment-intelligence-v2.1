@@ -182,12 +182,9 @@ export default function BiasAuditPanel({ audit, cisData, onSelectComment }: {
   }, [parsed])
 
   const totalOutliers = useMemo(() => {
-    let count = 0
-    for (const [key, values] of Object.entries(scoreValues)) {
-      const stats = computePercentiles(values)
-      count += values.filter(v => v <= stats.p1_5 || v >= stats.p98_5).length
-    }
-    return count
+    const cisValues = scoreValues['CIS'] || []
+    const stats = computePercentiles(cisValues)
+    return cisValues.filter(v => v <= stats.p1_5 || v >= stats.p98_5).length
   }, [scoreValues])
 
   if (cisData.length === 0) {
