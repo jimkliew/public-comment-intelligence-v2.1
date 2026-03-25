@@ -10,7 +10,8 @@ def get_driver():
     global _driver
     if _driver is None:
         s = get_settings()
-        _driver = GraphDatabase.driver(s.neo4j_uri, auth=(s.neo4j_user, s.neo4j_password))
+        auth = (s.neo4j_user, s.neo4j_password) if s.neo4j_password else None
+        _driver = GraphDatabase.driver(s.neo4j_uri, auth=auth)
     return _driver
 
 
