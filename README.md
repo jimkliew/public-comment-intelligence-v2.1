@@ -2,7 +2,7 @@
   <img src="frontend/public/sokat-logo.jpg" alt="SoKat" height="60" />
 </p>
 
-<h1 align="center">Public Comment Intelligence v2.1 -- Winner 4th Honorable Metions - ACT-IAC Mar 2026! </h1>
+<h1 align="center">Public Comment Intelligence v2.1 -- Winner Honorable Metions @ ACT-IAC Mar 2026! </h1>
 
 <p align="center">
   <strong>AI-Enabled Public Comment Analysis &amp; Substantiveness Scoring for Federal Rulemaking</strong><br/>
